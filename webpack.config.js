@@ -15,7 +15,15 @@ module.exports = {
                         presets: ['es2015', 'react']
                     }
                 }
+            },
+            {
+                test: /\.json$/,
+                use: {
+                    loader:'json-loader'
+                }
             }
-        ]
+        ],
+
     }
-};
+}
+;
