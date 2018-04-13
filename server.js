@@ -3,6 +3,7 @@ import express from 'express';
 import apiRouter from './api';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
+import serverRender from './serverRender';
 
 const server=express();
 
@@ -17,12 +18,16 @@ server.use(sassMiddleware({
 
 server.use(express.static('public'));
 
-server.listen(config.port,()=>{
+server.listen(config.port,'localhost',()=>{
     console.info('Express listening on port ',config.port);
 });
 
 server.get('/',(req,res)=>{
-   res.render('index',{content:'...'})
+    serverRender()
+        .then(({initialMarkup,initialData})=>{
+            res.render('index', {initialMarkup,initialData})
+        })
+        .catch(console.error)
 });
 
 
