@@ -13,4 +13,9 @@ const ContestPreview = (contest) => {
     )
 };
 
+ContestPreview.propTypes = {
+    categoryName: PropTypes.string.isRequired,
+    contestName:PropTypes.string.isRequired
+};
+
 export default ContestPreview;
